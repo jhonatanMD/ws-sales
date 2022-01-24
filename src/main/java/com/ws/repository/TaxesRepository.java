@@ -1,4 +1,7 @@
 package com.ws.repository;
 
-public interface TaxesRepository {
+import com.ws.entity.TaxesEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TaxesRepository extends JpaRepository<TaxesEntity,Long> {
 }
