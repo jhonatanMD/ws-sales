@@ -49,18 +49,17 @@ public class WsSalesApplication {
     @Bean
      void run() {
 
-        /*categoryRepository.save(new CategoryEntity(1l,"GASEOSA"));
+        categoryRepository.save(new CategoryEntity(1l,"GASEOSA"));
         categoryRepository.save(new CategoryEntity(2l,"COMESTIBLES"));
         productRepository.save(new ProductEntity(1L,"COCA COLA",new CategoryEntity(1L,""),new BigDecimal(12),1));
         productRepository.save(new ProductEntity(2L,"CHISTRIS",new CategoryEntity(2L,""),new BigDecimal(12),1));
 
-
+        //orderProductRepository.save(new OrderProductEntity(1l, OrderEntity.builder().id(1l).build(),ProductEntity.builder().id(1l).build()));
         taxesRepository.save(new TaxesEntity(1l,"POR ALGO",BigDecimal.TEN));
-        orderRepository.save(new OrderEntity(1L,"12", StatusOrder.COMPLETED, LocalDate.now(),BigDecimal.TEN,
-                Arrays.asList(new OrderProductEntity(1l,new OrderEntity()))));
+        orderRepository.save(new OrderEntity(1L,"12", StatusOrder.COMPLETED, LocalDate.now(),
+                TaxesEntity.builder().id(1l).build(), BigDecimal.TEN,Arrays.asList(new OrderProductEntity(1l, OrderEntity.builder().id(1l).build(),ProductEntity.builder().id(1l).build()))));
 
-        orderProductRepository.save(new OrderProductEntity(1l,new OrderEntity()))
-*/
+
 
 
     }
