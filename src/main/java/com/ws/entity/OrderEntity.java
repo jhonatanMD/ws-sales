@@ -1,6 +1,7 @@
 package com.ws.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ws.entity.dto.PaidTaxes;
 import com.ws.util.StatusOrder;
 import org.hibernate.annotations.Proxy;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -35,7 +37,7 @@ import java.util.List;
 public class OrderEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String orderId;
@@ -51,12 +53,16 @@ public class OrderEntity {
     @JoinColumn(name = "taxes_id", referencedColumnName = "taxes_id")
     private TaxesEntity taxes;
 
-    private BigDecimal amount;
+    @Embedded
+    private PaidTaxes paidTaxes;
 
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private List<OrderProductEntity> orderProducts;
+
+
+    private BigDecimal subTotal;
+    private BigDecimal total;
 
 
 }

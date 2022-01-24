@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Proxy;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Data
+@Builder
 @Proxy(lazy = false)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,7 +36,7 @@ public class OrderProductEntity {
     @JsonIgnore
     private OrderEntity order;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private ProductEntity productEntity;
 
 
