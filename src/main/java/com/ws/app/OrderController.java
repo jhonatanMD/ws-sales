@@ -1,6 +1,7 @@
 package com.ws.app;
 
 import com.ws.entity.dto.OrderDto;
+import com.ws.entity.dto.StatusRequest;
 import com.ws.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,14 +32,20 @@ public class OrderController {
         return orderService.findById(id);
     }
 
-
     @PostMapping
-    public OrderDto saveOrder(@RequestBody OrderDto order){
+    public OrderDto save(@RequestBody OrderDto order){
         return orderService.saveOrder(order);
     }
 
     @PutMapping
-    public OrderDto updateOrder(@RequestBody OrderDto order){
+    public OrderDto update(@RequestBody OrderDto order){
         return orderService.updateOrder(order);
     }
+
+    @PutMapping("/status")
+    public OrderDto updateStatus(@PathVariable StatusRequest request){
+        return orderService.updateStatus(request);
+    }
+
+
 }

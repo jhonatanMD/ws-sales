@@ -5,7 +5,6 @@ import com.ws.entity.OrderProductEntity;
 import com.ws.entity.TaxesEntity;
 import com.ws.util.StatusOrder;
 
-import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;

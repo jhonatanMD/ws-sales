@@ -3,6 +3,7 @@ package com.ws.service.impl;
 import com.ws.entity.OrderEntity;
 import com.ws.entity.dto.OrderDto;
 import com.ws.entity.dto.PaidTaxes;
+import com.ws.entity.dto.StatusRequest;
 import com.ws.mapper.OrderMapper;
 import com.ws.repository.OrderProductRepository;
 import com.ws.repository.OrderRepository;
@@ -10,7 +11,6 @@ import com.ws.service.OrderService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -63,6 +63,18 @@ public class OrderServiceImpl implements OrderService {
         return saveOrUpdate(order);
     }
 
+    @SneakyThrows
+    @Override
+    public OrderDto updateStatus(StatusRequest request) {
+        return orderRepository.findById(request.getId())
+                .map(r -> {
+                    r.setStatusOrder(request.getStatusOrder());
+                    return orderRepository.save(r);
+                }).map(orderMapper::toDto)
+                .orElseThrow(() -> new Exception("No EXISTE"));
+
+    }
+
 
     private OrderDto saveOrUpdate(OrderDto order){
 
@@ -76,6 +88,7 @@ public class OrderServiceImpl implements OrderService {
             p.setOrder(orderEntity);
             return orderProductRepository.save(p);
         }).map(p -> {
+
             p.setTotal(p.getProductEntity().getPrice().multiply(p.getAmount()));
             orderEntity.setSubTotal(orderEntity.getSubTotal().add(p.getTotal()));
             return orderProductRepository.save(p);

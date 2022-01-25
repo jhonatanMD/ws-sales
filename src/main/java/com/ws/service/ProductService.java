@@ -7,4 +7,6 @@ import java.util.List;
 public interface ProductService {
     List<ProductDto> findAll(int page , int size);
     ProductDto saveProduct(ProductDto product);
+    ProductDto updateProduct(ProductDto product);
+    void deleteProduct(Long id);
 }

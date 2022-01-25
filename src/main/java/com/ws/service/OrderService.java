@@ -1,6 +1,7 @@
 package com.ws.service;
 
 import com.ws.entity.dto.OrderDto;
+import com.ws.entity.dto.StatusRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public interface OrderService {
     List<OrderDto> findAll(int page,int size);
     OrderDto findById(Long id);
     OrderDto updateOrder(OrderDto order);
+    OrderDto updateStatus(StatusRequest request);
 
 
 

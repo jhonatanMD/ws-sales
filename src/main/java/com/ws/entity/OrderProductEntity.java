@@ -1,6 +1,8 @@
 package com.ws.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Proxy;
 
 import lombok.AllArgsConstructor;
@@ -38,6 +40,7 @@ public class OrderProductEntity {
     private OrderEntity order;
     private BigDecimal amount;
     @OneToOne(fetch = FetchType.EAGER)
+    @NotFound(action = NotFoundAction.IGNORE)
     private ProductEntity productEntity;
     private BigDecimal total;
 
