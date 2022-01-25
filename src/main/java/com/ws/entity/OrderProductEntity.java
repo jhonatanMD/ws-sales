@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -35,9 +36,9 @@ public class OrderProductEntity {
     @JoinColumn(name = "order_id")
     @JsonIgnore
     private OrderEntity order;
-
+    private BigDecimal amount;
     @OneToOne(fetch = FetchType.EAGER)
     private ProductEntity productEntity;
-
+    private BigDecimal total;
 
 }

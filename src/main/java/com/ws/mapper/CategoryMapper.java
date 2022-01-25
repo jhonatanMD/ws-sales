@@ -1,11 +1,11 @@
 package com.ws.mapper;
 
 import com.ws.entity.CategoryEntity;
-import com.ws.entity.dto.CaterogyResponse;
+import com.ws.entity.dto.CaterogyDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
 
-    CaterogyResponse toCategory (CategoryEntity entity);
+    CaterogyDto toCategory (CategoryEntity entity);
 }
