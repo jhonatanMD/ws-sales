@@ -47,6 +47,8 @@ public class OrderEntity {
     @Embedded
     private PaidTaxes paidTaxes;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    private CustomerEntity customer;
 
 
     private BigDecimal subTotal;

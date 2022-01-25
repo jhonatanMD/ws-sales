@@ -1,11 +1,13 @@
 package com.ws;
 
 import com.ws.entity.CategoryEntity;
+import com.ws.entity.CustomerEntity;
 import com.ws.entity.OrderEntity;
 import com.ws.entity.OrderProductEntity;
 import com.ws.entity.ProductEntity;
 import com.ws.entity.TaxesEntity;
 import com.ws.repository.CategoryRepository;
+import com.ws.repository.CustomerRepository;
 import com.ws.repository.OrderProductRepository;
 import com.ws.repository.OrderRepository;
 import com.ws.repository.ProductRepository;
@@ -31,10 +33,7 @@ public class WsSalesApplication {
     private ProductRepository productRepository;
 
     @Autowired
-    private OrderProductRepository orderProductRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
+    private CustomerRepository customerRepository;
 
 
     @Autowired
@@ -51,6 +50,7 @@ public class WsSalesApplication {
 
         categoryRepository.save(new CategoryEntity(1l,"GASEOSA"));
         categoryRepository.save(new CategoryEntity(2l,"COMESTIBLES"));
+        customerRepository.save(new CustomerEntity(1l,"Jhonatan"));
         productRepository.save(new ProductEntity(1L,"COCA COLA",new CategoryEntity(1L,""),new BigDecimal(50),1));
         productRepository.save(new ProductEntity(2L,"CHISTRIS",new CategoryEntity(2L,""),new BigDecimal(50),1));
         taxesRepository.save(new TaxesEntity(1l,BigDecimal.valueOf(10),BigDecimal.valueOf(5),BigDecimal.valueOf(8),BigDecimal.valueOf(2)));

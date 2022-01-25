@@ -1,13 +1,12 @@
 package com.ws.service;
 
-import com.ws.entity.CategoryEntity;
-import reactor.core.publisher.Flux;
+import com.ws.entity.dto.CaterogyDto;
 
 import java.util.List;
 
 public interface CategoryService {
 
-    List<CategoryEntity> findAllCategory();
+    List<CaterogyDto> findAllCategory();
 
 
 }
