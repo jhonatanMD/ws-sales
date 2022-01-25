@@ -5,6 +5,8 @@ import com.ws.entity.OrderProductEntity;
 import com.ws.entity.TaxesEntity;
 import com.ws.util.StatusOrder;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -24,9 +26,18 @@ public class OrderDto {
     private String orderId;
     private StatusOrder statusOrder;
     private LocalDate date;
+
+    @Valid
+    @NotNull
     private TaxesEntity taxes;
+
     private PaidTaxes paidTaxes;
+
+    @NotNull
     private CustomerEntity customer;
+
+    @Valid
+    @NotNull
     private List<OrderProductEntity> orderProducts;
     private BigDecimal subTotal;
     private BigDecimal total;

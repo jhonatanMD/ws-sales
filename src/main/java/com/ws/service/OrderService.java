@@ -2,7 +2,6 @@ package com.ws.service;
 
 import com.ws.entity.dto.OrderDto;
 import com.ws.entity.dto.StatusRequest;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 

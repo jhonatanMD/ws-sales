@@ -2,42 +2,29 @@ package com.ws;
 
 import com.ws.entity.CategoryEntity;
 import com.ws.entity.CustomerEntity;
-import com.ws.entity.OrderEntity;
-import com.ws.entity.OrderProductEntity;
 import com.ws.entity.ProductEntity;
 import com.ws.entity.TaxesEntity;
 import com.ws.repository.CategoryRepository;
 import com.ws.repository.CustomerRepository;
-import com.ws.repository.OrderProductRepository;
-import com.ws.repository.OrderRepository;
 import com.ws.repository.ProductRepository;
 import com.ws.repository.TaxesRepository;
-import com.ws.util.StatusOrder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Arrays;
+import lombok.RequiredArgsConstructor;
 
 
+@RequiredArgsConstructor
 @SpringBootApplication
 public class WsSalesApplication {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
 
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private CustomerRepository customerRepository;
-
-
-    @Autowired
-    private TaxesRepository taxesRepository;
+    private final  CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+    private final CustomerRepository customerRepository;
+    private final TaxesRepository taxesRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(WsSalesApplication.class, args);

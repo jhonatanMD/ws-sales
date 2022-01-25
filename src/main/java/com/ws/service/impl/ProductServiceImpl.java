@@ -30,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto saveProduct(ProductDto product) {
+        product.setStatus(StatusProduct.ACTIVED.getCode());
         return saveAndUpdate(product);
     }
 

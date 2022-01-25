@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -22,24 +24,25 @@ public class ProductController {
 
     private final ProductService productService;
 
+    @Valid
     @GetMapping("/{page}/{size}")
-    public List<ProductDto> findAll(@PathVariable int page, @PathVariable int size){
+    public List<ProductDto> findAll(@PathVariable @NotNull int page, @NotNull @PathVariable int size){
       return productService.findAll(page,size);
     }
 
 
     @PostMapping
-    public ProductDto save(@RequestBody ProductDto productDto){
+    public ProductDto save(@RequestBody @Valid ProductDto productDto){
         return productService.saveProduct(productDto);
     }
 
     @PutMapping
-    public ProductDto update(@RequestBody ProductDto productDto){
+    public ProductDto update(@RequestBody @Valid ProductDto productDto){
         return productService.updateProduct(productDto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable @Valid @NotNull Long id){
         productService.deleteProduct(id);
     }
 }

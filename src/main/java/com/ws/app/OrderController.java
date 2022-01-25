@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -22,28 +24,29 @@ public class OrderController {
 
     private final OrderService orderService;
 
+   @Valid
    @GetMapping("/{page}/{size}")
-    public List<OrderDto> findAll(@PathVariable  int page,@PathVariable int size){
+    public List<OrderDto> findAll(@PathVariable @NotNull int page, @PathVariable @NotNull int size){
         return orderService.findAll(page,size);
     }
 
     @GetMapping("/{id}")
-    public OrderDto findById(@PathVariable Long id){
+    public OrderDto findById(@PathVariable @Valid @NotNull Long id){
         return orderService.findById(id);
     }
 
     @PostMapping
-    public OrderDto save(@RequestBody OrderDto order){
+    public OrderDto save(@RequestBody @Valid  OrderDto order){
         return orderService.saveOrder(order);
     }
 
     @PutMapping
-    public OrderDto update(@RequestBody OrderDto order){
+    public OrderDto update(@RequestBody @Valid OrderDto order){
         return orderService.updateOrder(order);
     }
 
     @PutMapping("/status")
-    public OrderDto updateStatus(@PathVariable StatusRequest request){
+    public OrderDto updateStatus(@PathVariable @Valid  StatusRequest request){
         return orderService.updateStatus(request);
     }
 

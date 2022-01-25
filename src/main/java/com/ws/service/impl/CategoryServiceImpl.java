@@ -7,6 +7,7 @@ import com.ws.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +22,16 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CaterogyDto> findAllCategory() {
         return categoryRepository.findAll().stream()
-                .map(categoryMapper::toCategory)
+                .map(categoryMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public CaterogyDto saveCategory(CaterogyDto caterogyDto) {
+        return Optional.of(caterogyDto)
+                .map(categoryMapper::toEntity)
+                .map(categoryRepository::save)
+                .map(categoryMapper::toDto)
+                .get();
     }
 }

@@ -1,6 +1,7 @@
 package com.ws.service.impl;
 
 import com.ws.entity.OrderEntity;
+import com.ws.entity.OrderProductEntity;
 import com.ws.entity.dto.OrderDto;
 import com.ws.entity.dto.PaidTaxes;
 import com.ws.entity.dto.StatusRequest;
@@ -39,7 +40,8 @@ public class OrderServiceImpl implements OrderService {
         return  orderRepository.findAll(pageable)
                 .map(orderMapper::toDto)
                 .map(o -> {
-                    o.setOrderProducts(orderProductRepository.findByOrderOrderId(o.getOrderId()));
+                    List<OrderProductEntity> response =  orderProductRepository.findByOrderOrderId(o.getOrderId());
+                    o.setOrderProducts(response);
                     return o;
                 }).getContent();
     }
@@ -84,11 +86,11 @@ public class OrderServiceImpl implements OrderService {
 
         OrderEntity orderEntity  = orderRepository.findById(orderS.getId()).get();
 
+
         order.setOrderProducts(order.getOrderProducts().stream().map(p -> {
             p.setOrder(orderEntity);
             return orderProductRepository.save(p);
         }).map(p -> {
-
             p.setTotal(p.getProductEntity().getPrice().multiply(p.getAmount()));
             orderEntity.setSubTotal(orderEntity.getSubTotal().add(p.getTotal()));
             return orderProductRepository.save(p);
