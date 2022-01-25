@@ -8,7 +8,7 @@ import java.util.List;
 public interface OrderService {
 
     OrderDto saveOrder(OrderDto orderDto);
-    List<OrderDto> findAll(@PathVariable int page, @PathVariable int size);
+    List<OrderDto> findAll(int page,int size);
     OrderDto findById(Long id);
     OrderDto updateOrder(OrderDto order);
 

@@ -34,10 +34,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDto> findAll(@PathVariable int page, @PathVariable int size) {
-
+    public List<OrderDto> findAll( int page,  int size ) {
         Pageable pageable = PageRequest.of(page,size);
-
         return  orderRepository.findAll(pageable)
                 .map(orderMapper::toDto)
                 .map(o -> {
